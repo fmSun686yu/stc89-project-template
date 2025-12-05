@@ -1,0 +1,79 @@
+###############################################
+# STC89 Series Project Git Ignore
+# Author: fmSun686yu, ChatGPT (custom for your project)
+###############################################
+
+########## Keil C51 编译产物（必须忽略） ##########
+
+# 通用编译输出
+*.lst
+*.map
+*.omf
+*.lnp
+*.obj
+*.bak
+*.tmp
+*.log
+
+# Keil C51 特有
+*.M51
+*.CRF
+*.PLG
+
+# HEX 文件（可选：如果你想分享烧录文件，可注释掉）
+*.hex
+
+
+########## 工程构建输出文件夹 ##########
+
+# Listings 目录（编译产物）
+listings/
+
+# Output 目录（最终 bin/hex/目标文件）
+output/
+
+# 常见构建目录（防止其他工具生成）
+build/
+Build/
+out/
+Out/
+object/
+Object/
+dist/
+
+
+########## IDE 配置文件 ##########
+
+# VSCode 配置（不建议上传个人设置）
+.vscode/
+
+
+########## 操作系统自动生成文件 ##########
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+
+########## 临时测试文件 ##########
+
+# 临时脚本、日志、调试输出（你可以自行添加）
+*.tmp
+*.temp
+*.log
+
+
+########## 允许上传的内容（不要加入 ignore） ##########
+# ✓ 保留以下内容：
+# app/       → 应用层源代码
+# bsp/       → 板级支持包
+# hal/       → 硬件驱动层
+# core/      → 系统核心
+# config/    → 全局配置
+# startup/   → 启动代码
+# docs/      → 文档资料
+
+###############################################
