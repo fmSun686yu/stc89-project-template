@@ -1,5 +1,5 @@
 /**
- * file name: bsp_key.h
+ * file name: key_bsp.h
  *
  * Board Support Package Layer
  * Independent Key and Matrix Key Detection Modules
@@ -20,8 +20,8 @@
  * date: 2025-12-06
  */
 
-#ifndef _BSP_KEY_H_
-#define _BSP_KEY_H_
+#ifndef _KEY_BSP_H_
+#define _KEY_BSP_H_
 
 #include <stdint.h>
 #include "../core/stc89.h"
@@ -60,4 +60,4 @@
 
 void key_init(void);        // 按键初始化函数
 
-#endif  // _BSP_KEY_H_
+#endif  // _KEY_BSP_H_

@@ -1,5 +1,5 @@
 /**
- * file name: bsp_key.c
+ * file name: key_bsp.c
  *
  * Board Support Package Layer
  * Independent Key and Matrix Key Detection Modules
@@ -21,6 +21,6 @@
  * date: 2025-12-05
  */
 
- #include "bsp_key.h"
+ #include "key_bsp.h"
 
  

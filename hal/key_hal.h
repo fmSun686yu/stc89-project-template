@@ -1,5 +1,5 @@
 /**
- * @file hal_key.h
+ * @file key_hal.h
  *
  * @brief Independent Key and Matrix Key Detection Modules
  * Hardware Abstraction Layer
@@ -8,7 +8,7 @@
  * 功能：
  *  - 支持最多 10 个独立按键的检测，使用 KEY_COUNT 设置需要检测的独立按键个数
  *  - 支持事件：短按、1阶段长按、2阶段长按、3阶段长按、双击、组合键、释放检测
- *  - 可配置扫描间隔（SCAN_INTERVAL_MS）、长按阈值（LPRESS_MS1, LPRESS_MS2, LPRESS_MS3）、最长双击间隔阈值
+ *  - 可配置扫描间隔（SCAN_INTERVAL_MS）、长按阈值（LPRESS_MS1, LPRESS_MS2, LPRESS_MS3）、最长双击间隔阈值（DOUBLE_CLICK_MAX_MS）
  *  - 软件去抖动
  *  - 定时器扫描 + 按键状态机实现
  *
@@ -23,8 +23,8 @@
  * @date 2025-12-06
  */
 
-#ifndef _HAL_KEY_H_
-#define _HAL_KEY_H_
+#ifndef _KEY_HAL_H_
+#define _KEY_HAL_H_
 
 #include <stdint.h>
 #include "../core/delay.h"
@@ -71,4 +71,4 @@ void key_scan(void);        // 按键扫描函数，必须周期性调用：以 
 KEY_EVENT key_getevent(uint8_t key_id);        // 获取并清除指定按键的事件（key_id: 0 .. KEY_COUNT-1）
 void key_getevent_all(KEY_EVENT events[]);     // 批量获取所有按键事件并清除（events 数组长度必须 >= KEY_COUNT）
 
- #endif  /* _HAL_KEY_H_ */
+ #endif  // _KEY_HAL_H_
