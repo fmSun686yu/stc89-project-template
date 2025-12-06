@@ -5,7 +5,7 @@
 本工程为 STC89C516RD+ 单片机的软件开发模板，采用**模块化 + 分层**结构设计，将核心文件、外设驱动、应用层代码与文档管理进行严格划分，提供统一接口与规范命名方式。本工程文件采用 Visual Studio Code 编写代码 + Keil uVision 5 编译与调试 + STC-ISP 烧录程序的方法进行51单片机软件开发。
 ### 模板包含：
 - 工程目录组织规范
-- 常用外设驱动示例（延时、GPIO、定时器、串口等）
+- 常用外设驱动示例（定时器、串口、I2C等）
 - 可复用的代码结构与头文件管理模式
 - 文档模板与注释规范
 
@@ -38,17 +38,17 @@
 
 
 ## 3. 工程目录结构
-> STC89C51RC_RD+_Series_Project_Files_and_Program_Template
->  ├── app      // Application, 应用层
->  ├── bsp      // Board Support Package, 板级支持包
->  ├── hal      // Hardware Abstraction Layer, 硬件抽象层（驱动层）
->  ├── core     // System Core, 系统核心层
->  ├── config   // Configuratio, 全局配置
->  ├── startup  // Startup Code, 启动文件
->  ├── listings // Listings 文件夹，用于存放列表文件（.lst文件），这些文件是编译过程的详细输出记录，对程序调试和优化非常有帮助
->  ├── output   // Output Files, 工程编译生成的相关文件
->  ├── docs     // Documentation, 存放工程的所有文档资料
->  └──.vscode   // Visual Studio Code 配置文件
+> STC89C51RC_RD+_Series_Project_Files_and_Program_Template <br>
+>  ├── app      // Application, 应用层 <br>
+>  ├── bsp      // Board Support Package, 板级支持包 <br>
+>  ├── hal      // Hardware Abstraction Layer, 硬件抽象层（驱动层） <br>
+>  ├── core     // System Core, 系统核心层 <br>
+>  ├── config   // Configuratio, 全局配置 <br>
+>  ├── startup  // Startup Code, 启动文件 <br>
+>  ├── listings // Listings 文件夹，用于存放列表文件（.lst文件），这些文件是编译过程的详细输出记录，对程序调试和优化非常有帮助 <br>
+>  ├── output   // Output Files, 工程编译生成的相关文件 <br>
+>  ├── docs     // Documentation, 存放工程的所有文档资料 <br>
+>  └──.vscode   // Visual Studio Code 配置文件 <br>
 
 ## 4. 核心模块说明
 ### 延时模块 (delay.h/c)
@@ -134,7 +134,7 @@ v1.0.0 — 2025-12-03
 如果有任何技术问题，可以通过邮件联系我，我看到会及时回复。
 如果有错误或不恰当的地方，也欢迎通过邮件联系我并指出，我会积极学习并及时修改。
 
-**最后更新: 2025年12月6日
-版本: v1.0.0
-维护者: ForeverMySunyu
+**最后更新: 2025年12月6日 <br>
+版本: v1.0.0 <br>
+维护者: ForeverMySunyu <br>
 邮箱: celeryhr166@gmail.com**
