@@ -347,20 +347,23 @@ void delay_1s(uint16_t n)
 
 #endif
 
-#if FOSC_HZ ==      // @MHz
+#if FOSC_HZ == 20000000     // @20.000MHz
 
 /**
  * @name delay_10us
  * @brief 粗略延时： n * 10 microsecond（大致）
  * @param n 延时倍数（单位 10 us）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 20.000 MHz
  */
 void delay_10us(uint8_t n)
 {
+    unsigned char data i;
 
     while(n--)
     {
-	    
+	    _nop_();
+        i = 5;
+        while (--i);
     }
 }
 
@@ -368,14 +371,21 @@ void delay_10us(uint8_t n)
  * @name delay_1ms
  * @brief 粗略延时： n * 1 millisecond（大致）
  * @param n 延时倍数（单位 1 ms）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 20.000 MHz
  */
 void delay_1ms(uint16_t n)
 {
+    unsigned char data i, j;
 
     while(n--)
     {
-        
+        i = 4;
+        j = 58;
+        do
+        {
+            while (--j);
+        } while (--i);
+
     }
 }
 
@@ -383,33 +393,47 @@ void delay_1ms(uint16_t n)
  * @name delay_1s
  * @brief 粗略延时： n * 1 second（大致）
  * @param n 延时倍数（单位 1 s）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 20.000 MHz
  */
 void delay_1s(uint16_t n)
 {
+    unsigned char data i, j, k;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 13;
+        j = 171;
+        k = 121;
+        do
+        {
+            do
+            {
+                while (--k);
+            } while (--j);
+        } while (--i);
     }
 }
 
 #endif
 
-#if FOSC_HZ ==      // @MHz
+#if FOSC_HZ == 22118400     // @22.1184MHz
 
 /**
  * @name delay_10us
  * @brief 粗略延时： n * 10 microsecond（大致）
  * @param n 延时倍数（单位 10 us）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 22.1184 MHz
  */
 void delay_10us(uint8_t n)
 {
+    unsigned char data i;
 
     while(n--)
     {
-	    
+	    _nop_();
+        i = 6;
+        while (--i);
     }
 }
 
@@ -417,14 +441,21 @@ void delay_10us(uint8_t n)
  * @name delay_1ms
  * @brief 粗略延时： n * 1 millisecond（大致）
  * @param n 延时倍数（单位 1 ms）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 22.1184 MHz
  */
 void delay_1ms(uint16_t n)
 {
+    unsigned char data i, j;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 4;
+        j = 146;
+        do
+        {
+            while (--j);
+        } while (--i);
     }
 }
 
@@ -432,33 +463,47 @@ void delay_1ms(uint16_t n)
  * @name delay_1s
  * @brief 粗略延时： n * 1 second（大致）
  * @param n 延时倍数（单位 1 s）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 22.1184 MHz
  */
 void delay_1s(uint16_t n)
 {
+    unsigned char data i, j, k;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 15;
+        j = 2;
+        k = 235;
+        do
+        {
+            do
+            {
+                while (--k);
+            } while (--j);
+        } while (--i);
     }
 }
 
 #endif
 
-#if FOSC_HZ ==      // @MHz
+#if FOSC_HZ == 24000000     // @24.000MHz
 
 /**
  * @name delay_10us
  * @brief 粗略延时： n * 10 microsecond（大致）
  * @param n 延时倍数（单位 10 us）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 24.000 MHz
  */
 void delay_10us(uint8_t n)
 {
+    unsigned char data i;
 
     while(n--)
     {
-	    
+	    _nop_();
+        i = 7;
+        while (--i);
     }
 }
 
@@ -466,14 +511,20 @@ void delay_10us(uint8_t n)
  * @name delay_1ms
  * @brief 粗略延时： n * 1 millisecond（大致）
  * @param n 延时倍数（单位 1 ms）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 24.000 MHz
  */
 void delay_1ms(uint16_t n)
 {
+    unsigned char data i, j;
 
     while(n--)
     {
-        
+        i = 4;
+        j = 225;
+        do
+        {
+            while (--j);
+        } while (--i);
     }
 }
 
@@ -481,33 +532,47 @@ void delay_1ms(uint16_t n)
  * @name delay_1s
  * @brief 粗略延时： n * 1 second（大致）
  * @param n 延时倍数（单位 1 s）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 24.000 MHz
  */
 void delay_1s(uint16_t n)
 {
+    unsigned char data i, j, k;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 16;
+        j = 51;
+        k = 249;
+        do
+        {
+            do
+            {
+                while (--k);
+            } while (--j);
+        } while (--i);
     }
 }
 
 #endif
 
-#if FOSC_HZ ==      // @MHz
+#if FOSC_HZ == 27000000     // @27.000MHz
 
 /**
  * @name delay_10us
  * @brief 粗略延时： n * 10 microsecond（大致）
  * @param n 延时倍数（单位 10 us）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 27.000 MHz
  */
 void delay_10us(uint8_t n)
 {
+    unsigned char data i;
 
     while(n--)
     {
-	    
+	    _nop_();
+        i = 8;
+        while (--i);
     }
 }
 
@@ -515,14 +580,20 @@ void delay_10us(uint8_t n)
  * @name delay_1ms
  * @brief 粗略延时： n * 1 millisecond（大致）
  * @param n 延时倍数（单位 1 ms）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 27.000 MHz
  */
 void delay_1ms(uint16_t n)
 {
+    unsigned char data i, j;
 
     while(n--)
     {
-        
+        i = 5;
+        j = 93;
+        do
+        {
+            while (--j);
+        } while (--i);
     }
 }
 
@@ -530,33 +601,46 @@ void delay_1ms(uint16_t n)
  * @name delay_1s
  * @brief 粗略延时： n * 1 second（大致）
  * @param n 延时倍数（单位 1 s）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 27.000 MHz
  */
 void delay_1s(uint16_t n)
 {
+    unsigned char data i, j, k;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 18;
+        j = 26;
+        k = 88;
+        do
+        {
+            do
+            {
+                while (--k);
+            } while (--j);
+        } while (--i);
     }
 }
 
 #endif
 
-#if FOSC_HZ ==      // @MHz
+#if FOSC_HZ == 30000000     // @30.000MHz
 
 /**
  * @name delay_10us
  * @brief 粗略延时： n * 10 microsecond（大致）
  * @param n 延时倍数（单位 10 us）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 30.000 MHz
  */
 void delay_10us(uint8_t n)
 {
+    unsigned char data i;
 
     while(n--)
     {
-	    
+	    i = 10;
+	    while (--i);
     }
 }
 
@@ -564,14 +648,20 @@ void delay_10us(uint8_t n)
  * @name delay_1ms
  * @brief 粗略延时： n * 1 millisecond（大致）
  * @param n 延时倍数（单位 1 ms）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 30.000 MHz
  */
 void delay_1ms(uint16_t n)
 {
+    unsigned char data i, j;
 
     while(n--)
     {
-        
+        i = 5;
+        j = 218;
+        do
+        {
+            while (--j);
+        } while (--i);
     }
 }
 
@@ -579,33 +669,46 @@ void delay_1ms(uint16_t n)
  * @name delay_1s
  * @brief 粗略延时： n * 1 second（大致）
  * @param n 延时倍数（单位 1 s）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 30.000 MHz
  */
 void delay_1s(uint16_t n)
 {
+    unsigned char data i, j, k;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 19;
+        j = 0;
+        k = 185;
+        do
+        {
+            do
+            {
+                while (--k);
+            } while (--j);
+        } while (--i);
     }
 }
 
 #endif
 
-#if FOSC_HZ ==      // @MHz
+#if FOSC_HZ == 33000000     // @33.000MHz
 
 /**
  * @name delay_10us
  * @brief 粗略延时： n * 10 microsecond（大致）
  * @param n 延时倍数（单位 10 us）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 33.000 MHz
  */
 void delay_10us(uint8_t n)
 {
+    unsigned char data i;
 
     while(n--)
     {
-	    
+	    i = 11;
+	    while (--i);
     }
 }
 
@@ -613,14 +716,20 @@ void delay_10us(uint8_t n)
  * @name delay_1ms
  * @brief 粗略延时： n * 1 millisecond（大致）
  * @param n 延时倍数（单位 1 ms）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 33.000 MHz
  */
 void delay_1ms(uint16_t n)
 {
+    unsigned char data i, j;
 
     while(n--)
     {
-        
+        i = 6;
+        j = 86;
+        do
+        {
+            while (--j);
+        } while (--i);
     }
 }
 
@@ -628,20 +737,32 @@ void delay_1ms(uint16_t n)
  * @name delay_1s
  * @brief 粗略延时： n * 1 second（大致）
  * @param n 延时倍数（单位 1 s）
- * @note 晶振频率 =  MHz
+ * @note 晶振频率 = 33.000 MHz
  */
 void delay_1s(uint16_t n)
 {
+    unsigned char data i, j, k;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 21;
+        j = 231;
+        k = 24;
+        do
+        {
+            do
+            {
+                while (--k);
+            } while (--j);
+        } while (--i);
+
     }
 }
 
 #endif
 
-#if FOSC_HZ ==      // @MHz
+#if FOSC_HZ == 33177600     // @33.1776MHz
 
 /**
  * @name delay_10us
@@ -651,10 +772,12 @@ void delay_1s(uint16_t n)
  */
 void delay_10us(uint8_t n)
 {
+    unsigned char data i;
 
     while(n--)
     {
-	    
+	    i = 11;
+	    while (--i);
     }
 }
 
@@ -666,10 +789,16 @@ void delay_10us(uint8_t n)
  */
 void delay_1ms(uint16_t n)
 {
+    unsigned char data i, j;
 
     while(n--)
     {
-        
+        i = 6;
+        j = 93;
+        do
+        {
+            while (--j);
+        } while (--i);
     }
 }
 
@@ -681,10 +810,21 @@ void delay_1ms(uint16_t n)
  */
 void delay_1s(uint16_t n)
 {
+    unsigned char data i, j, k;
 
     while(n--)
     {
-        
+        _nop_();
+        i = 22;
+        j = 3;
+        k = 227;
+        do
+        {
+            do
+            {
+                while (--k);
+            } while (--j);
+        } while (--i);
     }
 }
 
