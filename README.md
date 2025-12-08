@@ -40,8 +40,8 @@
 ## 3. 工程目录结构
 > STC89C51RC_RD+_Series_Project_Files_and_Program_Template <br>
 >  ├── app      // Application, 应用层 <br>
->  ├── bsp      // Board Support Package, 板级支持包 <br>
 >  ├── hal      // Hardware Abstraction Layer, 硬件抽象层（驱动层） <br>
+>  ├── bsp      // Board Support Package, 板级支持包 <br>
 >  ├── core     // System Core, 系统核心层 <br>
 >  ├── config   // Configuratio, 全局配置 <br>
 >  ├── startup  // Startup Code, 启动文件 <br>
@@ -55,8 +55,8 @@
 > ```mermaid
 > graph TB
 >     A("app <br> (Application，应用层)") -->|调用| B
->     B("bsp <br> (Board Support Package，板级支持包)") -->|调用| C
->     C("hal <br> (Hardware Abstraction Layer，硬件抽象层)")
+>     B("hal <br> (Hardware Abstraction Layer，硬件抽象层)") -->|调用| C
+>     C("bsp <br> (Board Support Package，板级支持包)")
 > ```
 > 
 > <br>
