@@ -50,6 +50,18 @@
 >  ├── docs     // Documentation, 存放工程的所有文档资料 <br>
 >  └──.vscode   // Visual Studio Code 配置文件 <br>
 
+> 层级高低关系为（由高到低）：
+> 
+> ```mermaid
+> graph TB
+>     A("app <br> (Application，应用层)") -->|调用| B
+>     B("bsp <br> (Board Support Package，板级支持包)") -->|调用| C
+>     C("hal <br> (Hardware Abstraction Layer，硬件抽象层)")
+> ```
+> 
+> <br>
+> `core` 层和 `config` 层放在最底层，被所有层调用。
+
 ## 4. 核心模块说明
 ### 延时模块 (delay.h/c)
 
