@@ -11,6 +11,8 @@
 #ifndef _CONFIGURATION_H_
 #define _CONFIGURATION_H_
 
+#include "key_configuration.h"      // 独立按键与矩阵按键的全局配置
+
 /**
  * @brief 单片机外部晶振频率
  *        常见值：11.0592MHz、12MHz、22.1184MHz 等
@@ -29,5 +31,7 @@
  * @brief UART 波特率设置
  */
 #define UART_BAUDRATE  28800    // UART 通信波特率
+
+
 
 #endif  // _CONFIGURATION_H_
