@@ -11,8 +11,6 @@
 #ifndef _CONFIGURATION_H_
 #define _CONFIGURATION_H_
 
-#include "key_configuration.h"      // 独立按键与矩阵按键的全局配置
-
 /**
  * @brief 单片机外部晶振频率
  *        常见值：11.0592MHz、12MHz、22.1184MHz 等
