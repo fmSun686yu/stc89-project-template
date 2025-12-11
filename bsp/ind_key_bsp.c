@@ -16,7 +16,7 @@
  * @date: 2025-12-11
  */
 
- #include "ind_key_bsp.h"
+#include "ind_key_bsp.h"
 
 /**
  * @brief bsp 按键初始化函数

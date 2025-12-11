@@ -31,7 +31,19 @@
  */
 void key_hal_init(void)
 {
+    uint8_t i;
+
     key_bsp_init();
+    
+    //! 初始化所有按键的按键数据结构体
+    for(i=0;i<KEY_NUM;i++)
+    {
+        key_data[i].state = KEY_STATE_IDLE;
+        key_data[i].last_state = KEY_STATE_IDLE;
+        key_data[i].tick = 0;
+        key_data[i].pressed_tick = 0;
+        key_data[i].click_count = 0;
+    }
 }
 
 /**
@@ -214,6 +226,7 @@ static void key_state_machine(uint8_t key_id)
             {
                 key->tick ++;
 
+                //! 如果消抖完成
                 if(key->tick >= REL_DEBOUNCE_TICK)
                 {
                     //! 如果上一状态是组合键状态，则直接回到 IDLE
