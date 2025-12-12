@@ -30,6 +30,29 @@
  */
 #define UART_BAUDRATE  28800    // UART 通信波特率
 
+/* =========================== 51单片机定时器相关配置 =========================== */
+
+/**
+ * @def TIMER0_MS
+ * @brief 定时器0的定时时间，单位：微妙(us)
+ * @details 定义需要的定时时长
+ */
+#define TIMER0_MS       10
+
+/**
+ * @def TIMER1_MS
+ * @brief 定时器1的定时时间，单位：微妙(us)
+ * @details 定义需要的定时时长
+ */
+#define TIMER1_MS       10
+
+/**
+ * @def TIMER2_MS
+ * @brief 定时器2的定时时间，单位：微妙(us)
+ * @details 定义需要的定时时长
+ */
+#define TIMER2_MS       10
+
 
 
 #endif  // _CONFIGURATION_H_
