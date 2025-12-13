@@ -9,8 +9,8 @@
  * @date 2025-12-11
  */
 
-#ifndef _IND_KEY_CONFIGURATION_
-#define _IND_KEY_CONFIGURATION_
+#ifndef _IND_KEY_CONFIGURATION_H_
+#define _IND_KEY_CONFIGURATION_H_
 
 /* =============== 按键配置区域 =============== */
 
