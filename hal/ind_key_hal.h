@@ -10,7 +10,6 @@
  *      - 可配置扫描间隔（SCAN_INTERVAL_MS）、长按阈值（LPRESS1_MS, LPRESS2_MS, LPRESS3_MS）、最长双击间隔阈值（DOUBLE_CLICK_MAX_MS）
  *      - 软件去抖动
  *      - 定时器扫描 + 按键状态机实现
- *      - 使用回调函数对独立按键事件进行处理
  *
  * 使用方法：
  *  - 独立按键检测：
@@ -27,6 +26,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include "../core/stc89.h"
+#include "../core/timer.h"
 #include "../config/ind_key_configuration.h"
 #include "../bsp/ind_key_bsp.h"
 

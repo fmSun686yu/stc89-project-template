@@ -21,7 +21,7 @@
 
 /**
  * @def TIMER0_MS
- * @brief 定时器0的定时时间，单位：微妙(us)
+ * @brief 定时器0的定时时间，单位：微妙 (us)
  * @details 定义需要的定时时长
  * @note 最长定时时长（us）：
  *       模式0：8192*TIMER0_COUNT_RATE/FOSC_MHZ

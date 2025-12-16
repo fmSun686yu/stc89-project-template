@@ -68,6 +68,8 @@ void Timer0_Init(void)
     #else
         TF0 = 0;            //! T0 溢出中断标志清零
 
+        ET0 = 1;            //! 开 T2 中断
+
         TR0 = 1;            //! 启动 T0
 
     #endif
@@ -157,8 +159,26 @@ void Timer2_Init(void)
     RCAP2L = TIMER2_VALUE & 0x00ff;
     RCAP2H = TIMER2_VALUE >> 8;
 
+    //! 开 T2 中断
+    ET2 = 1;
+
     //! 启动 T2
     TR1 = 1;
+}
+
+/* =========================== 回调函数定义与注册 =========================== */
+
+static Timer2_Routine_Callback_t timer2_routine_callback = NULL;            //! 定时器2中断回调函数指针，保存由上层（HAL）注册的回调接口
+
+/**
+ * @brief 定时器2中断服务程序中的回调函数注册接口
+ * @note 供上层（HAL）调用注册
+ * @param cb 回调函数指针
+ * @return None
+ */
+void timer2_register_callback(Timer2_Routine_Callback_t cb)
+{
+    timer2_routine_callback = cb;
 }
 
 
@@ -195,5 +215,8 @@ void Timer1_Routine(void) interrupt 3
  */
 void Timer2_Routine(void) interrupt 5
 {
-
+    if(timer2_routine_callback != NULL)
+    {
+        timer2_routine_callback();          //! 以回调函数形式调用独立按键检测程序
+    }    
 }

@@ -9,7 +9,6 @@
  *  - 支持 1~16 个独立按键的状态检测
  *  - 基于定时器 Tick 进行扫描（消抖、状态保持）
  *  - 检测事件：短按、1阶段长按、2阶段长按、3阶段长按、双击、组合键、释放
- *  - 通过回调将事件通知 APP 层
  * 
  * 设计说明：
  *  - 按键是否按下由 bsp/key_bsp.c 中的 key_pressed_detect(uint8_t key_id); 函数检测
@@ -34,6 +33,8 @@ void key_hal_init(void)
     uint8_t i;
 
     key_bsp_init();
+
+    timer2_register_callback(key_scan);         //! 将本层的函数 key_scan(); 注册到Core层
     
     //! 初始化所有按键的按键数据结构体
     for(i=0;i<KEY_NUM;i++)

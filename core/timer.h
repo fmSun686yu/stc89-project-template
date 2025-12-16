@@ -50,4 +50,10 @@ void Timer0_Init(void);         //! 定时器0初始化函数
 void Timer1_Init(void);         //! 定时器1初始化函数
 void Timer2_Init(void);         //! 定时器2初始化函数
 
+/* ===================== 定义回调函数类型（定时器2中断服务程序） ======================== */
+typedef void (*Timer2_Routine_Callback_t)(void);
+
+/* ===================== 注册回调函数接口（供HAL层调用） ===================== */
+void timer2_register_callback(Timer2_Routine_Callback_t cb);
+
 #endif
