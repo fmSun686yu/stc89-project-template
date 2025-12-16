@@ -33,4 +33,46 @@
  */
 #define TIMER2_TCLK       0
 
+/**
+ * @def UART_MODE
+ * @brief UART 的工作方式配置
+ * @details 值：0 - 方式0，同步移位串行方式，移位寄存器
+ *              1 - 方式1，8位UART，波特率可变
+ *              2 - 方式2，9位UART
+ *              3 - 方式3，9位UART，波特率可变
+ */
+#define UART_MODE   1
+
+/**
+ * @def SM2_C
+ * @brief UART 的 SCON 寄存器的 SM2 位配置（允许方式2或方式3多机通信控制位）
+ * @details 值：0 - 非多机通信
+ *              1 - 允许多机通信
+ */
+#define SM2_C   0
+
+/**
+ * @def REN_C
+ * @brief UART 的 SCON 寄存器的 REN 位配置（允许/禁止串行接收控制位）
+ * @details 值：0 - 禁止串行接收状态
+ *              1 - 允许串行接收状态
+ */
+#define REN_C   1
+
+/**
+ * @def SMOD_C
+ * @brief UART 的 PCON 寄存器的 SMOD 位配置（波特率选择位）
+ * @details 值：0 - 波特率不加倍
+ *              1 - 波特率加倍
+ */
+#define SMOD_C  0
+
+/**
+ * @def SMOD0_C
+ * @brief UART 的 PCON 寄存器的 SMOD0 位配置（帧错误检测有效控制位）
+ * @details 值：0 - SCON 寄存器中的 SM0/FE 位用于 SM0 功能，和 SM1 一起指定串行口的工作方式
+ *              1 - SCON 寄存器中的 SM0/FE 位用于 FE （帧错误检测）功能
+ */
+#define SMOD0_C 0
+
 #endif  /* _UART_CONFIGURATION_H_ */

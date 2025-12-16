@@ -12,6 +12,7 @@
 #define _TIMER_CONFIGURATION_H_
 
 #include "osc_configuration.h"
+#include "uart_configuration.h"
 #include "ind_key_configuration.h"
 
 
@@ -80,8 +81,13 @@
  *       模式0：8192*TIMER1_COUNT_RATE/FOSC_MHZ
  *       模式1：65536*TIMER1_COUNT_RATE/FOSC_MHZ
  *       模式2：256*TIMER1_COUNT_RATE/FOSC_MHZ
+ * @note Timer1 用于产生串口通信波特率的情况下，TIMER1_US = 1/Timer1 溢出率（MHz）
  */
-#define TIMER1_US       10
+#if SMOD_C
+    #define TIMER1_US       2/(32*UART_BAUDRATE)*10e6
+#else
+    #define TIMER1_US       1/(32*UART_BAUDRATE)*10e6
+#endif
 
 /**
  * @def TIMER1_COUNT_RATE
@@ -115,7 +121,7 @@
  *              2 - 模式2，8位自动重装模式
  *              3 - 无效，停止计数
  */
-#define TIMER1_MODE       0
+#define TIMER1_MODE       2
 
 
 /* ============================== Timer2 相关配置 ============================== */
