@@ -14,9 +14,9 @@
  *  - 按键是否按下由 bsp/key_bsp.c 中的 key_pressed_detect(uint8_t key_id); 函数检测
  *  - HAL 在每个 tick 中读取所有按键信息并更新状态机
  * 
- * @version 1.1.0
+ * @version 1.2.0
  * @author fmSun686yu
- * @date 2025-12-11
+ * @date 2025-12-16
  */
 
 #include "ind_key_hal.h"
