@@ -88,7 +88,7 @@ static void key_scan(void)
         //! 逐列运行按键状态机
         for(j=0;j<MATRIX_KEY_COL_NUM;j++)
         {
-            key_state_machine(i*j+j, full_col_level_states & (0x01<<j));
+            key_state_machine(i, j, full_col_level_states & (0x01<<j));
         }
     }
 }
@@ -96,13 +96,36 @@ static void key_scan(void)
 /**
  * @brief 按键状态机
  * @note key_scan(); 中循环调用，每次调用更新一次对应按键的状态
- * @param key_id 按键 ID
+ * @param i 按键行号
+ * @param j 按键列号
  * @param key_level 按键电平，0-低电平，1-高电平
  * @return None
  */
-static void key_state_machine(uint8_t key_id, bool key_level)
+static void key_state_machine(uint8_t i, uint8_t j, bool key_level)
 {
+    key_data_t *key = &key_data[i][j];        //! 定义一个指针，指向对应的按键数据数组
 
+    switch (key->state)
+    {
+    case KEY_STATE_IDLE:
+        
+        break;
+
+    case KEY_STATE_PRE_DEBOUNCE:
+        
+        break;
+
+    case KEY_STATE_PRESS:
+        
+        break;
+
+    case KEY_STATE_REL_DEBOUNCE:
+        
+        break;
+    
+    default:
+        break;
+    }
 }
 
 /**
