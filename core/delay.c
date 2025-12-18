@@ -39,13 +39,17 @@
  * 
  * @attention 请将 C 语言代码优化级别设置为默认
  *
- * @version 1.0.1
+ * @version 1.1.0
  * @author  ForeverMySunyu
- * @date    2025-12-07
+ * @date    2025-12-17
  **********************************************************************
 */
 
 #include "delay.h"
+#include <stdint.h>
+#include <INTRINS.H>
+#include "stc89.h"
+#include "../config/osc_configuration.h"
 
 /* ======根据单片机晶振频率来选择匹配的软件延时函数====== */
 

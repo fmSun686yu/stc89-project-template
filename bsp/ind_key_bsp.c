@@ -17,6 +17,8 @@
  */
 
 #include "ind_key_bsp.h"
+#include "../core/stc89.h"
+#include "../config/ind_key_configuration.h"
 
 /**
  * @brief bsp 按键初始化函数

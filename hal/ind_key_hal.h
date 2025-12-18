@@ -25,10 +25,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "../core/stc89.h"
-#include "../core/timer.h"
-#include "../config/ind_key_configuration.h"
-#include "../bsp/ind_key_bsp.h"
 
 /* ============= 按键事件类型定义 ============= */
 typedef enum
@@ -56,19 +52,6 @@ typedef enum
     KEY_STATE_WAIT_PRE_AG       //! 等待双击状态
 } key_state_t;
 
-/* ================ 按键数据结构体 ================ */
-typedef struct
-{
-    key_state_t state;        //! 当前状态
-    key_state_t last_state;   //! 上一个状态
-    uint16_t tick;            //! 非按下状态持续 tick
-    uint16_t pressed_tick;    //! 稳定按下状态（包括短按和所有长按）持续 tick
-    uint16_t click_count;     //! 连续按下次数
-} key_data_t;
-
-/* ===================== 静态变量 ===================== */
-static key_data_t key_data[KEY_NUM];    //! 按键数据数组
-
 /* =================== 全局按键事件标志变量结构体（主循环中检查，并调用对应的按键事件处理函数） =================== */
 struct
 {
@@ -76,22 +59,10 @@ struct
     key_event_t key_event;      //! 按键事件
     key_state_t key_state;      //! 当前按键所处状态
     uint16_t pressed_key_mask;  //! 被按下按键的掩码（用于组合键检测与处理）
-} key_event_flag = {0, KEY_EVENT_NONE, KEY_STATE_IDLE, 0};
+} key_event_flag;
 
 /* ================================= API 函数声明 ================================= */
-
-void key_hal_init(void);        //！ hal 按键初始化函数
-void key_scan(void);        //！ 按键扫描函数，处理独立按键状态机，必须周期性调用：以 SCAN_INTERVAL_MS 为周期调用（通常放在定时器中断）
-
-
-
-/* ================================= 内部函数声明 ================================= */
-
-static void notify_event(uint8_t key_id, key_event_t key_event, key_state_t key_state, uint16_t pressed_key_mask);     //! 通知触发的按键事件
-static void key_state_machine(uint8_t key_id);  //! 按键状态机
-static uint16_t key_get_pressed_mask(uint8_t *pressed_key_count, uint16_t *pressed_key_mask);     //! 获取当前处于 PRESSED 状态的按键掩码
-static void key_check_combination(void);        //! 检查并通知组合键
-
-
+void key_hal_init(void);        //! hal 按键初始化函数
+void key_clear_event(void);     //! 全局按键事件标志变量清除函数
 
 #endif  /* _IND_KEY_HAL_H_ */

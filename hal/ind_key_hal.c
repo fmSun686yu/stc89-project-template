@@ -20,6 +20,29 @@
  */
 
 #include "ind_key_hal.h"
+#include "../core/stc89.h"
+#include "../config/ind_key_configuration.h"
+#include "../bsp/ind_key_bsp.h"
+
+/* ================ 按键数据结构体 ================ */
+typedef struct
+{
+    key_state_t state;        //! 当前状态
+    key_state_t last_state;   //! 上一个状态
+    uint16_t tick;            //! 非按下状态持续 tick
+    uint16_t pressed_tick;    //! 稳定按下状态（包括短按和所有长按）持续 tick
+    uint16_t click_count;     //! 连续按下次数
+} key_data_t;
+
+/* ===================== 静态变量 ===================== */
+static key_data_t key_data[KEY_NUM];    //! 按键数据数组
+
+/* ================================= 内部函数声明 ================================= */
+static void key_scan(void);            //！ 按键扫描函数，处理独立按键状态机，必须周期性调用：以 SCAN_INTERVAL_MS 为周期调用（通常放在定时器中断）
+static void key_state_machine(uint8_t key_id);  //! 按键状态机
+static void key_check_combination(void);        //! 检查并通知组合键
+static uint16_t key_get_pressed_mask(uint8_t *pressed_key_count, uint16_t *pressed_key_mask);     //! 获取当前处于 PRESSED 状态的按键掩码
+static void notify_event(uint8_t key_id, key_event_t key_event, key_state_t key_state, uint16_t pressed_key_mask);     //! 通知触发的按键事件
 
 /* ================================ API 函数定义 ================================ */
 
@@ -45,15 +68,34 @@ void key_hal_init(void)
         key_data[i].pressed_tick = 0;
         key_data[i].click_count = 0;
     }
+
+    key_clear_event();          //! 清除按键事件标志变量
 }
 
 /**
- * @brief 按键扫描函数，调用按键状态机函数
+ * @brief 全局按键事件标志变量清除函数
+ * @param None
+ * @return None
+ */
+void key_clear_event(void)
+{
+    key_event_flag.key_id = 0xff;
+    key_event_flag.key_event = KEY_EVENT_NONE;
+    key_event_flag.key_state = KEY_STATE_IDLE;
+    key_event_flag.pressed_key_mask = 0;
+}
+
+
+
+/* ================================ 内部函数定义 ================================ */
+
+/**
+ * @brief 按键扫描函数，调用按键状态机函数和组合键检查函数
  * @note 必须周期性调用：以 SCAN_INTERVAL_MS 为周期调用（通常放在定时器中断中）
  * @param None
  * @return None
  */
-void key_scan(void)
+static void key_scan(void)
 {
     uint8_t i;
 
@@ -66,10 +108,6 @@ void key_scan(void)
     //! 检查并通知组合键
     key_check_combination();
 }
-
-
-
-/* ================================ 内部函数定义 ================================ */
 
 /**
  * @brief 通知触发的按键事件

@@ -15,19 +15,14 @@
  *
  *  - 注意：延时精度受编译器、优化等级、指令集以及循环开销影响。如需高精度请改用定时器或手写精确汇编循环。
  *
- * @version 1.0.1
+ * @version 1.1.0
  * @author  ForeverMySunyu
- * @date    2025-12-07
+ * @date    2025-12-17
  **********************************************************************
 */
 
 #ifndef _DELAY_H_
 #define _DELAY_H_
-
-#include <stdint.h>
-#include <INTRINS.H>
-#include "stc89.h"
-#include "../config/osc_configuration.h"
 
 void delay_10us(uint8_t count);    /* 粗略延时： count * 10 microseconds （仅 FOSC >= 11.0592 MHz 提供） */
 void delay_50us(uint8_t count);    /* 粗略延时： count * 50 microseconds （仅 FOSC <= 6.000 MHz 提供）*/

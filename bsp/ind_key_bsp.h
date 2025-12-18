@@ -21,8 +21,6 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "../core/stc89.h"
-#include "../config/ind_key_configuration.h"
 
 /* ============= API 函数声明 ============= */
 
