@@ -14,6 +14,9 @@
  *  - 按键是否按下由 bsp/key_bsp.c 中的 key_pressed_detect(uint8_t key_id); 函数检测
  *  - HAL 在每个 tick 中读取所有按键信息并更新状态机
  * 
+ * @note 本程序将 key_scan(); 注册到 core 层的定时器中断服务程序中运行，使用 T2 的中断服务程序，
+ *       注意不要与矩阵按键检测程序冲突（两个按键检测程序不能使用同一个定时器中断）
+ * 
  * @version 1.2.0
  * @author fmSun686yu
  * @date 2025-12-16

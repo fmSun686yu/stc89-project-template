@@ -12,7 +12,10 @@
  *     - 定时器扫描 + 按键状态机实现
  *
  * 使用方法：
- * - 在定时器中断或主循环中以 10ms 周期调用 matrix_key_scan();
+ * - 在定时器中断或主循环中以 10ms 周期调用 key_scan();
+ * 
+ * @note 本程序将 key_scan(); 注册到 core 层的定时器中断服务程序中运行，使用 T2 的中断服务程序，
+ *       注意不要与独立按键检测程序冲突（两个按键检测程序不能使用同一个定时器中断）
  * 
  * @version 1.0.0
  * @author ForeverMySunyu
@@ -44,6 +47,8 @@ void key_hal_init(void)
 
     key_bsp_init();
 
+    timer2_register_callback(key_scan);         //! 将本层的函数 key_scan(); 注册到Core层
+
     //! 初始化所有按键状态
     for(i=0;i<MATRIX_KEY_ROW_NUM;i++)
     {
@@ -53,6 +58,8 @@ void key_hal_init(void)
             key_data[i][j].tick = 0;
         }
     }
+
+    key_clear_event();          //! 清除按键事件标志变量
 }
 
 /**
@@ -108,19 +115,51 @@ static void key_state_machine(uint8_t i, uint8_t j, bool key_level)
     switch (key->state)
     {
     case KEY_STATE_IDLE:
+        if (!key_level)
+        {
+            key->tick = 0;
+            key->state = KEY_STATE_PRE_DEBOUNCE;
+        }
         
         break;
 
     case KEY_STATE_PRE_DEBOUNCE:
+        if (!key_level)
+        {
+            key->tick ++;
+
+            if(key->tick >= PRE_DEBOUNCE_TICK)
+            {
+                key->tick = 0;
+                key->state = KEY_STATE_PRESS;
+                notify_event(i*j+j, 1, KEY_STATE_PRESS);
+            }
+        }
         
         break;
 
     case KEY_STATE_PRESS:
-        
+        if(key_level)
+        {
+            key->tick = 0;
+            key->state = KEY_STATE_REL_DEBOUNCE;
+        }
+
         break;
 
     case KEY_STATE_REL_DEBOUNCE:
-        
+        if (key_level)
+        {
+            key->tick ++;
+
+            if(key->tick >= REL_DEBOUNCE_TICK)
+            {
+                key->tick = 0;
+                key->state = KEY_STATE_IDLE;
+                notify_event(i*j+j, 1, KEY_STATE_IDLE);
+            }
+        }
+
         break;
     
     default:
@@ -133,13 +172,14 @@ static void key_state_machine(uint8_t i, uint8_t j, bool key_level)
  * @note 设置标志结构体变量，在主循环中检查该结构体以调用对应的按键事件处理函数
  *       - 通知非组合键事件时，按要求传入前三个参数，第四个参数传入 0 即可
  *       - 通知组合键事件时，按要求传入后三个参数，第一个参数传入 0 即可
- * @param key_id 按键 ID
- * @param key_event 触发的按键事件
+ * @param key_id 按键ID（=行号*列号+列号）
+ * @param key_pressed 按下事件触发标志（0-未被按下，1-被按下）
  * @param key_state 按键当前所处的状态
- * @param pressed_key_mask 被按下按键的掩码（用于组合键检测与处理）
  * @return None
  */
-static void notify_event(uint8_t key_id, key_event_t key_event, key_state_t key_state, uint16_t pressed_key_mask)
+static void notify_event(uint8_t key_id, bool key_pressed, key_state_t key_state)
 {
-    
+    key_event_flag.key_id = key_id;             //! 按键ID
+    key_event_flag.key_press = key_pressed;     //! 按下事件触发标志
+    key_event_flag.key_state = key_state;       //! 按键状态
 }

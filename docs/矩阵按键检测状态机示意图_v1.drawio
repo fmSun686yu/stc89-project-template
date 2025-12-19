@@ -1,0 +1,106 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.0.3 Chrome/140.0.7339.249 Electron/38.7.0 Safari/537.36" version="29.0.3">
+  <diagram name="第 1 页" id="zG3A_NnBaqpk2ajueQ0e">
+    <mxGraphModel dx="1018" dy="707" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="o24F34ryESumU-OIijE--1" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;START&lt;/b&gt;&lt;/font&gt;" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="40" y="280" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--2" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="o24F34ryESumU-OIijE--1" target="o24F34ryESumU-OIijE--3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="180" y="330" as="sourcePoint" />
+            <mxPoint x="240" y="320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--3" value="KEY_STATE_IDLE" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="240" y="280" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--4" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="o24F34ryESumU-OIijE--3" target="o24F34ryESumU-OIijE--5" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="360" y="319.71" as="sourcePoint" />
+            <mxPoint x="440" y="319.71" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--6" value="检测到&lt;div&gt;低电平&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="o24F34ryESumU-OIijE--4" vertex="1" connectable="0">
+          <mxGeometry x="0.0286" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--5" value="KEY_STATE_PRE_DEBOUNCE" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="520" y="280" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--7" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="o24F34ryESumU-OIijE--5" target="o24F34ryESumU-OIijE--8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="680" y="400" as="sourcePoint" />
+            <mxPoint x="910" y="260" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--9" value="连续&lt;div&gt;PRE_DEBOUNCE_TICK次&lt;/div&gt;&lt;div&gt;检测到低电平&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="o24F34ryESumU-OIijE--7" vertex="1" connectable="0">
+          <mxGeometry x="-0.1071" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--8" value="KEY_STATE_PRESS" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="520" y="480" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--10" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="o24F34ryESumU-OIijE--5" target="o24F34ryESumU-OIijE--3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="410" y="250" as="sourcePoint" />
+            <mxPoint x="460" y="200" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="480" y="200" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--11" value="检测到高电平" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="o24F34ryESumU-OIijE--10" vertex="1" connectable="0">
+          <mxGeometry x="-0.1354" y="34" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="o24F34ryESumU-OIijE--8" target="o24F34ryESumU-OIijE--14" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="990" y="440" as="sourcePoint" />
+            <mxPoint x="1020" y="440" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--13" value="检测到&lt;div&gt;高电平&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="o24F34ryESumU-OIijE--12" vertex="1" connectable="0">
+          <mxGeometry x="0.0286" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--14" value="KEY_STATE_REL_DEBOUNCE" style="ellipse;whiteSpace=wrap;html=1;strokeWidth=3;" parent="1" vertex="1">
+          <mxGeometry x="240" y="480" width="200" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--15" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="o24F34ryESumU-OIijE--14" target="o24F34ryESumU-OIijE--3" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="880" y="640" as="sourcePoint" />
+            <mxPoint x="700" y="600" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--16" value="连续&lt;div&gt;REL_DEBOUNCE_TICK次&lt;/div&gt;&lt;div&gt;检测到高电平&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="o24F34ryESumU-OIijE--15" vertex="1" connectable="0">
+          <mxGeometry x="-0.1071" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--17" value="" style="curved=1;endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="o24F34ryESumU-OIijE--14" target="o24F34ryESumU-OIijE--8" edge="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="680" y="790" as="sourcePoint" />
+            <mxPoint x="400" y="790" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="480" y="640" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="o24F34ryESumU-OIijE--18" value="检测到低电平" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" parent="o24F34ryESumU-OIijE--17" vertex="1" connectable="0">
+          <mxGeometry x="-0.1354" y="34" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WW2GUWn8REJb16lVNhiU-1" value="&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;b&gt;矩阵按键检测状态机示意图_v1&lt;/b&gt;&lt;/font&gt;" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="80" y="120" width="310" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
