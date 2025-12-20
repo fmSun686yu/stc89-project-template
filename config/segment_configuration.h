@@ -14,14 +14,28 @@
 #ifndef _SEGMENT_CONFIGURATION_H_
 #define _SEGMENT_CONFIGURATION_H_
 
+#include "../core/stc89.h"
+
 /** @brief 数码管显示位数（支持 1~8 位） */
-#define SEG_DIGIT_COUNT        4
+#define SEG_DIGIT_COUNT        8
 
 /** @brief 数码管类型定义（不要修改） */
-#define SEG_COMMON_CATHODE     0   /** 共阴极数码管 */
-#define SEG_COMMON_ANODE       1   /** 共阳极数码管 */
+typedef enum
+{
+    SEG_COMMON_CATHODE = 0,   /**< 共阴极 */
+    SEG_COMMON_ANODE          /**< 共阳极 */
+} seg_type_t;
 
 /** @brief 当前数码管类型选择 */
-#define SEG_TYPE               SEG_COMMON_CATHODE
+#define SEG_TYPE               SEG_COMMON_ANODE
+
+/** @brief 是否使用38译码器（0-不使用，1-使用） */
+#define _74HC138               0
+
+/** @brief 段码端口（a~g, dp） */
+#define SEG_SEGMENT_PORT       P1
+
+/** @brief 位选端口 */
+#define SEG_DIGIT_PORT         P2
 
 #endif  /* _SEGMENT_CONFIGURATION_H_ */

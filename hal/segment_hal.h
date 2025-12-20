@@ -11,6 +11,9 @@
 #ifndef _SEGMENT_HAL_H_
 #define _SEGMENT_HAL_H_
 
-
+/* ================== API 函数声明区域 ================== */
+void segment_hal_init(void);        //! 数码管显示初始化函数
+void segment_set_number(uint8_t index, uint8_t value);      //! 设置要在 index 位上显示的整数数值
+void segment_scan_task(void);       //! 动态扫描刷新函数（需周期调用）
 
 #endif      /* _SEGMENT_HAL_H_ */
