@@ -4,15 +4,19 @@
  * @details 本文件用于数码管显示模块的硬件抽象层驱动
  * @version 1.0.0
  * @author  ForeverMySunyu
- * @date    2025-12-21
+ * @date    2025-12-22
  */
 
 #ifndef _SEGMENT_HAL_H_
 #define _SEGMENT_HAL_H_
 
+#include <stdint.h>
+
 /* ================== API 函数声明区域 ================== */
 void segment_hal_init(void);        //! 数码管显示初始化函数
-void segment_set_number(uint8_t index, uint8_t value);      //! 设置要在 index 位上显示的整数数值
+void clear_seg_buffer(void);        //!
+void segment_set_int_number(int32_t value);      //! 设置要显示的**整数**数值
+void segment_set_float_number(float value, uint8_t decimal_places);         //! 设置要显示的**浮点数**数值
 void segment_scan_task(void);       //! 动态扫描刷新函数（需周期调用）
 
 #endif      /* _SEGMENT_HAL_H_ */

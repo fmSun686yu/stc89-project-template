@@ -4,10 +4,9 @@
  * @details 本文件用于数码管显示模块的硬件抽象层驱动
  * @version 1.0.0
  * @author  ForeverMySunyu
- * @date    2025-12-21
+ * @date    2025-12-22
  */
 
-#include <stdint.h>
 #include <stdbool.h>
 #include "../config/segment_configuration.h"
 #include "segment_hal.h"
@@ -49,7 +48,7 @@ void clear_seg_buffer(void)
 }
 
 /**
- * @brief 设置要在 index 位上显示的整数数值
+ * @brief 设置要显示的**整数**数值
  * @param value 要显示的整数数值
  * @return None
  */
@@ -79,9 +78,98 @@ void segment_set_int_number(int32_t value)
         value = -value;
     }
 
+    //! 从低位到高位设置 seg_buffer 数组
+    for (i = 0; i < SEG_DIGIT_COUNT; i++)
+    {
+        if(value)
+        {
+            seg_buffer[i] = value % 10;
+        }
+        else
+        {
+            //! 如果是负数且还未设置显示负号
+            if (nagative_number)
+            {
+                seg_buffer[i] = 20;         //! 显示负号
+                nagative_number = 0;
+            }
+            else
+            {
+                seg_buffer[i] = 21;         //! 设置全灭不显示
+            }
+        }
 
+        value /= 10;
+    }
+    
+}
 
+/**
+ * @brief 设置要显示的**浮点数**数值
+ * @param value 要显示的浮点数数值
+ * @param decimal_places 要显示的小数位数
+ * @return None
+ */
+void segment_set_float_number(float value, uint8_t decimal_places)
+{
+    uint8_t i;
+    uint32_t value_int;
+    bool nagative_number = 0;
 
+    //! 检查要显示的数字是否是负数
+    if(value < 0)
+    {
+        nagative_number = 1;
+        value = -value;
+    }
+
+    //! 转化为整数
+    for (i = 0; i < decimal_places; i++)
+    {
+        value *= 10;
+    }
+    value_int = (uint32_t) value;
+    
+    #if 0   //! 控制是否启用超出最大值检测
+
+        //! 如果要显示的十进制值超过8位数，则显示不下
+        if (value > 99999999)
+        {
+            for(i=0;i<SEG_DIGIT_COUNT;i++)      seg_buffer[i] = 20;
+        }
+        else if ((nagative_number) && (value > 9999999))
+        {
+            for(i=0;i<SEG_DIGIT_COUNT;i++)      seg_buffer[i] = 20;
+        }
+
+    #endif
+
+    //! 从低位到高位设置 seg_buffer 数组
+    for (i = 0; i < SEG_DIGIT_COUNT; i++)
+    {
+        if(value_int)
+        {
+            seg_buffer[i] = value_int % 10;
+        }
+        else
+        {
+            //! 如果是负数且还未设置显示负号
+            if (nagative_number)
+            {
+                seg_buffer[i] = 20;         //! 显示负号
+                nagative_number = 0;
+            }
+            else
+            {
+                seg_buffer[i] = 21;         //! 设置全灭不显示
+            }
+        }
+
+        value_int /= 10;
+    }
+
+    //! 显示小数点
+    seg_buffer[decimal_places] += 10;
 
 }
 
