@@ -33,9 +33,9 @@ typedef enum
 #define _74HC138               0
 
 /** @brief 段码端口（a~g, dp） */
-#define SEG_SEGMENT_PORT       P1
+#define SEGMENT_PORT       P1
 
 /** @brief 位选端口 */
-#define SEG_DIGIT_PORT         P2
+#define DIGIT_PORT         P2
 
 #endif  /* _SEGMENT_CONFIGURATION_H_ */
