@@ -12,6 +12,8 @@
 #define _UART_BSP_H_
 
 /* ================== API 函数声明区域 ================== */
-void uart_init_bsp(void);
+void uart_init_bsp(void);           //! bsp 串口初始化函数
+void uart_send_byte_bsp(unsigned char senddata);          //! 发送一个字节数据
+unsigned char uart_receive_byt_bsp(void);                //! 接受一个字节的数据
 
 #endif  /* _UART_BSP_H_ */
