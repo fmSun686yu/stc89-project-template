@@ -54,11 +54,11 @@ static void notify_event(uint8_t key_id, key_event_t key_event, key_state_t key_
  * @param None
  * @return None
  */
-void key_hal_init(void)
+void key_init_hal(void)
 {
     uint8_t i;
 
-    key_bsp_init();
+    key_init_bsp();
 
     timer2_register_callback(key_scan);         //! 将本层的函数 key_scan(); 注册到Core层
     

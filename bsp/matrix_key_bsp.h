@@ -20,7 +20,7 @@
 
 /* ================= 函数声明区域 ================= */
 
-void key_bsp_init(void);            //! BSP 矩阵按键初始化函数
+void key_init_bsp(void);            //! BSP 矩阵按键初始化函数
 void key_set_row(uint8_t row);      //! 设置第 row 行为低电平，其余行为高电平
 uint8_t key_read_columns(void);     //! 读取所有列电平
 

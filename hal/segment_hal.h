@@ -13,7 +13,7 @@
 #include <stdint.h>
 
 /* ================== API 函数声明区域 ================== */
-void segment_hal_init(void);        //! 数码管显示初始化函数
+void segment_init_hal(void);        //! 数码管显示初始化函数
 void clear_seg_buffer(void);        //!
 void segment_set_int_number(int32_t value);      //! 设置要显示的**整数**数值
 void segment_set_float_number(float value, uint8_t decimal_places);         //! 设置要显示的**浮点数**数值

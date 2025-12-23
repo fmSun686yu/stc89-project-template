@@ -62,7 +62,7 @@ struct
 } key_event_flag;
 
 /* ================================= API 函数声明 ================================= */
-void key_hal_init(void);        //! hal 按键初始化函数
+void key_init_hal(void);        //! hal 按键初始化函数
 void key_clear_event(void);     //! 全局按键事件标志变量清除函数
 
 #endif  /* _IND_KEY_HAL_H_ */

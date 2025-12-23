@@ -19,7 +19,7 @@
 /**
  * @brief  BSP 矩阵按键初始化函数
  */
-void key_bsp_init(void)
+void key_init_bsp(void)
 {
     
 }

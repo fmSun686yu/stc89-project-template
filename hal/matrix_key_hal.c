@@ -41,11 +41,11 @@ static key_data_t key_data[MATRIX_KEY_ROW_NUM][MATRIX_KEY_COL_NUM];    //! 按�
 /**
  * @brief  HAL 矩阵按键初始化函数
  */
-void key_hal_init(void)
+void key_init_hal(void)
 {
     uint8_t i, j;
 
-    key_bsp_init();
+    key_init_bsp();
 
     timer2_register_callback(key_scan);         //! 将本层的函数 key_scan(); 注册到Core层
 

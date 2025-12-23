@@ -28,9 +28,9 @@ static uint8_t seg_scan_index = 0;
  * @param None
  * @return None
  */
-void segment_hal_init(void)
+void segment_init_hal(void)
 {
-    segment_bsp_init();
+    segment_init_bsp();
 
     clear_seg_buffer();
 }

@@ -24,7 +24,7 @@
 
 /* ============= API 函数声明 ============= */
 
-void key_bsp_init(void);        // bsp 按键初始化函数
+void key_init_bsp(void);        // bsp 按键初始化函数
 bool key_pressed_detect(uint8_t key_id);    // 按键是否被按下检测函数
 
 #endif  // _IND_KEY_BSP_H_

@@ -105,7 +105,7 @@
  * @param None
  * @return None
  */
-void segment_bsp_init(void)
+void segment_init_bsp(void)
 {
     SEGMENT_PORT = 0x00;        //! 初始化数码管段选端口
     DIGIT_PORT = 0x00;          //! 初始化数码管位选端口

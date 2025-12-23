@@ -25,7 +25,7 @@
  * @param None
  * @return None
  */
- void key_bsp_init(void)
+ void key_init_bsp(void)
  {
 
  }
