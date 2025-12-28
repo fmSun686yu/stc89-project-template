@@ -1,9 +1,9 @@
 /**
  * @file    iic_hal.c
  * @brief   IIC 软件模拟 hal 实现
- * @version 1.0.0
+ * @version 1.0.1
  * @author  ForeverMySunyu
- * @date    2025-12-28
+ * @date    2025-12-29
  */
 
 #include "../core/delay.h"
@@ -66,9 +66,9 @@ iic_states_t IIC_Wait_Bus_Idle(void)
  * @brief 释放（恢复） IIC 总线
  * @note  通过发送 9 个 SCL 脉冲，尝试释放被从机拉低的 SDA
  * @param None
- * @return None
+ * @return IIC 状态（IIC_OK）
  */
-void IIC_Bus_Recover(void)
+iic_states_t IIC_Bus_Recover(void)
 {
     uint8_t i;
 
@@ -92,6 +92,8 @@ void IIC_Bus_Recover(void)
     delay_10us(IIC_DELAY_10US);
     SDA_Set(1);
     delay_10us(IIC_DELAY_10US);
+
+    return IIC_OK;
 }
 
 /**
@@ -124,8 +126,9 @@ iic_states_t IIC_Start(void)
  * @brief 产生 IIC 重复起始信号
  * @note 不释放总线，直接从 SCL=1, SDA=1 → SDA=0
  * @attention 使用该函数前提：使用该函数的主机已占有总线
+ * @return IIC 状态（IIC_OK）
  */
-void IIC_Restart()
+iic_states_t IIC_Restart()
 {
     /* 确保 SDA 为高（释放） */
     SDA_Set(1);
@@ -142,20 +145,24 @@ void IIC_Restart()
     /* 拉低 SCL，进入数据阶段 */
     SCL_Set(0);
     delay_10us(IIC_DELAY_10US);
+
+    return IIC_OK;
 }
 
 /**
  * @brief IIC 停止信号
  * @param None
- * @return None
+ * @return IIC 状态（IIC_OK）
  */
-void IIC_Stop(void)
+iic_states_t IIC_Stop(void)
 {
     SDA_Set(0);
     SCL_Set(1);
     delay_10us(IIC_DELAY_10US);
     SDA_Set(1);
     delay_10us(IIC_DELAY_10US);
+
+    return IIC_OK;
 }
 
 /**
@@ -191,8 +198,9 @@ iic_states_t IIC_Wait_ACK(void)
 /**
  * @brief 发送 ACK 或 NACK
  * @param ack 0-发送 NACK，1-发送 ACK
+ * @return IIC 状态（IIC_OK）
  */
-void IIC_Send_ACK(bool ack)
+iic_states_t IIC_Send_ACK(bool ack)
 {
     SDA_Set(!ack);
     delay_10us(IIC_DELAY_10US);
@@ -200,6 +208,8 @@ void IIC_Send_ACK(bool ack)
     SCL_Set(1);
     delay_10us(IIC_DELAY_10US);
     SCL_Set(0);
+
+    return IIC_OK;
 }
 
 /**
@@ -223,18 +233,21 @@ iic_states_t IIC_SendByte(unsigned char sendbyte)
         delay_10us(IIC_DELAY_10US);
     }
 
+    /* 等待、检测从机 ACK，并返回对应状态码 */
     return IIC_Wait_ACK();
 }
 
 /**
  * @brief IIC 接收一个字节
+ * @param receivebyte 用于保存接受到的1个字节的变量的地址
  * @param ack 是否发送 ACK（0=NACK，1=ACK）
- * @return 接收到的一个字节的数据
+ * @return IIC 状态（IIC_OK）
  */
-unsigned char IIC_ReceiveByte(bool ack)
+iic_states_t IIC_ReceiveByte(unsigned char *receivebyte, bool ack)
 {
     uint8_t i;
-    uint8_t receivebyte = 0;
+
+    *receivebyte = 0;
 
     SDA_Set(1);     //! 释放 SDA 线
 
@@ -244,18 +257,16 @@ unsigned char IIC_ReceiveByte(bool ack)
         SCL_Set(1);
         delay_10us(IIC_DELAY_10US);
 
-        receivebyte <<= 1;
+        *receivebyte <<= 1;
         if (SDA_Read())
         {
-            receivebyte |= 0x01;
+            *receivebyte |= 0x01;
         }
 
         SCL_Set(0);
         delay_10us(IIC_DELAY_10US);
     }
     
-    /* 发送 ACK / NACK */
-    IIC_Send_ACK(ack);
-
-    return receivebyte;
+    /* 发送 ACK / NACK，并返回状态码 */
+    return IIC_Send_ACK(ack);
 }
