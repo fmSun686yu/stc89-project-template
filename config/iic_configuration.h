@@ -22,6 +22,11 @@
 
 /*==================== IIC 时序配置 ====================*/
 
-#define IIC_DELAY_US   5        //! IIC 时序延时（单位：微秒（us））
+#define IIC_DELAY_10US   1        //! IIC 时序延时（单位：10微秒（10us））
+
+/*==================== 超时配置 ====================*/
+
+#define IIC_ACK_TIMEOUT  600   //! ACK 等待超时计数
+#define IIC_BUS_IDLE_TIMEOUT    600     //! 总线空闲检测超时计数
 
 #endif      /* _IIC_CONFIGURATION_H_ */

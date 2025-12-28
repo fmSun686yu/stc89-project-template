@@ -24,6 +24,8 @@
 #ifndef _DELAY_H_
 #define _DELAY_H_
 
+#include <stdint.h>
+
 void delay_10us(uint8_t count);    /* 粗略延时： count * 10 microseconds （仅 FOSC >= 11.0592 MHz 提供） */
 void delay_50us(uint8_t count);    /* 粗略延时： count * 50 microseconds （仅 FOSC <= 6.000 MHz 提供）*/
 void delay_1ms(uint16_t count);    /* 粗略延时： count * 1 millisecond */

@@ -4,9 +4,12 @@
  * @note GPIO 模拟，软件模拟
  * @version 1.0.0
  * @author  ForeverMySunyu
- * @date    2025-12-23
+ * @date    2025-12-27
  */
 
+
+
+#include "../config/iic_configuration.h"
 #include "iic_bsp.h"
 
 /*==================== API 函数定义区域 ====================*/
@@ -16,47 +19,61 @@
  * @param None
  * @return None
  */
-void iic_init_bsp(void)
+void IIC_Init_bsp(void)
 {
-
+    
 }
 
 /**
- * @brief IIC 起始信号
+ * @brief 设置 SCL 电平
+ * @param level 0-低电平，1-高电平
+ * @return None
+ */
+void SCL_Set(bool level)
+{
+    if (level)
+    {
+        IIC_SCL = 1;
+    }
+    else
+    {
+        IIC_SCL = 0;
+    }
+}
+
+/**
+ * @brief 读取 SCL 电平
  * @param None
- * @return None
+ * @retval 0-低电平，1-高电平
  */
-void iic_start(void)
+bool SCL_Read(void)
 {
-
+    return IIC_SCL;
 }
 
 /**
- * @brief IIC 停止信号
+ * @brief 设置 SDA 电平
+ * @param level 0-低电平，1-高电平
+ * @return None
+ */
+void SDA_Set(bool level)
+{
+    if (level)
+    {
+        IIC_SDA = 1;
+    }
+    else
+    {
+        IIC_SDA = 0;
+    }
+}
+
+/**
+ * @brief 读取 SDA 电平
  * @param None
- * @return None
+ * @retval 0-低电平，1-高电平
  */
-void iic_stop(void)
+bool SDA_Read(void)
 {
-
-}
-
-/**
- * @brief IIC 发送一个字节
- * @param sendbyte 要发送的一个字节的数据
- * @return None
- */
-void iic_send_byte_bsp(unsigned char sendbyte)
-{
-
-}
-
-/**
- * @brief IIC 接收一个字节
- * @param ack 是否发送 ACK（0=NACK，1=ACK）
- * @return 接收到的一个字节的数据
- */
-unsigned char iic_receive_byte_bsp(bool ack)
-{
-
+    return IIC_SDA;
 }

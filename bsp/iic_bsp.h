@@ -4,7 +4,7 @@
  * @note GPIO 模拟，软件模拟
  * @version 1.0.0
  * @author  ForeverMySunyu
- * @date    2025-12-23
+ * @date    2025-12-27
  */
 
 #ifndef _IIC_BSP_H_
@@ -14,10 +14,12 @@
 
 /*==================== API 函数声明区域 ====================*/
 
-void iic_init_bsp(void);            //! IIC 初始化
-void iic_start(void);            //! IIC 起始信号
-void iic_stop(void);            //! IIC 停止信号
-void iic_send_byte_bsp(unsigned char sendbyte);            //! IIC 发送一个字节
-unsigned char iic_receive_byte_bsp(bool ack);            //! IIC 接收一个字节
+void IIC_Init_bsp(void);            //! IIC 初始化
+
+//! GPIO 操作接口
+void SCL_Set(bool level);
+bool SCL_Read(void);
+void SDA_Set(bool level);
+bool SDA_Read(void);
 
 #endif  /* _IIC_BSP_H_ */
