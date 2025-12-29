@@ -1,7 +1,7 @@
 /**
  * @file    iic_hal.c
  * @brief   IIC 软件模拟 hal 实现
- * @version 1.0.1
+ * @version 1.0.2
  * @author  ForeverMySunyu
  * @date    2025-12-29
  */
@@ -63,17 +63,28 @@ iic_states_t IIC_Wait_Bus_Idle(void)
 }
 
 /**
- * @brief 释放（恢复） IIC 总线
+ * @brief 重置 IIC 总线
  * @note  通过发送 9 个 SCL 脉冲，尝试释放被从机拉低的 SDA
  * @param None
  * @return IIC 状态（IIC_OK）
  */
-iic_states_t IIC_Bus_Recover(void)
+iic_states_t IIC_Bus_Reset(void)
 {
     uint8_t i;
 
-    /* 释放 SDA */
-    bsp_iic_sda_set(1);
+    /* 释放 SDA 与 SCL */
+    SDA_Set(1);
+    delay_10us(IIC_DELAY_10US);
+    SCL_Set(1);
+    delay_10us(IIC_DELAY_10US);
+
+    /* 产生 START 信号 */
+    SDA_Set(0);
+    delay_10us(IIC_DELAY_10US);
+    SCL_Set(0);
+    delay_10us(IIC_DELAY_10US);
+
+    SDA_Set(1);
     delay_10us(IIC_DELAY_10US);
 
     /* 连续发送 9 个 SCL 脉冲 */
@@ -84,10 +95,17 @@ iic_states_t IIC_Bus_Recover(void)
         SCL_Set(0);
         delay_10us(IIC_DELAY_10US);
     }
-    
-    /* 强制产生 STOP 信号 */
+
+    /* 产生 START 信号 */
+    SCL_Set(1);
+    delay_10us(IIC_DELAY_10US);
     SDA_Set(0);
     delay_10us(IIC_DELAY_10US);
+
+    SCL_Set(0);
+    delay_10us(IIC_DELAY_10US);
+    
+    /* 产生 STOP 信号 */
     SCL_Set(1);
     delay_10us(IIC_DELAY_10US);
     SDA_Set(1);

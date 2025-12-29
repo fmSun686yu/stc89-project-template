@@ -1,7 +1,7 @@
 /**
  * @file    iic_hal.h
  * @brief   IIC 软件模拟 hal 接口
- * @version 1.0.1
+ * @version 1.0.2
  * @author  ForeverMySunyu
  * @date    2025-12-29
  */
@@ -26,7 +26,7 @@ typedef enum
 
 iic_states_t IIC_Init_hal(void);                        //! IIC 初始化
 iic_states_t IIC_Wait_Bus_Idle(void);                   //! 检测 IIC 总线是否空闲
-iic_states_t IIC_Bus_Recover(void);                     //! 释放（恢复） IIC 总线
+iic_states_t IIC_Bus_Reset(void);                       //! 重置 IIC 总线
 iic_states_t IIC_Start(void);                           //! IIC 起始信号
 iic_states_t IIC_Restart(void);                         //! 产生 IIC 重复起始信号
 iic_states_t IIC_Stop(void);                            //! IIC 停止信号
