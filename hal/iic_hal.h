@@ -26,7 +26,8 @@ typedef enum
 
 iic_states_t IIC_Init_hal(void);                        //! IIC 初始化
 iic_states_t IIC_Wait_Bus_Idle(void);                   //! 检测 IIC 总线是否空闲
-iic_states_t IIC_Bus_Reset(void);                       //! 重置 IIC 总线
+iic_states_t IIC_Slave_Reset(void);                     //! 重置 IIC 总线及从机设备
+iic_states_t IIC_Bus_Recovery(void);                    //! 释放（恢复） IIC 总线
 iic_states_t IIC_Start(void);                           //! IIC 起始信号
 iic_states_t IIC_Restart(void);                         //! 产生 IIC 重复起始信号
 iic_states_t IIC_Stop(void);                            //! IIC 停止信号

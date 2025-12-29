@@ -63,12 +63,12 @@ iic_states_t IIC_Wait_Bus_Idle(void)
 }
 
 /**
- * @brief 重置 IIC 总线
- * @note  通过发送 9 个 SCL 脉冲，尝试释放被从机拉低的 SDA
+ * @brief 重置 IIC 总线及从机设备
+ * @note  通过发送 1 个起始信号， 9 个 SCL 脉冲， 1 个起始信号， 1 个停止信号，尝试重置 IIC 总线及从机设备
  * @param None
  * @return IIC 状态（IIC_OK）
  */
-iic_states_t IIC_Bus_Reset(void)
+iic_states_t IIC_Slave_Reset(void)
 {
     uint8_t i;
 
@@ -106,6 +106,42 @@ iic_states_t IIC_Bus_Reset(void)
     delay_10us(IIC_DELAY_10US);
     
     /* 产生 STOP 信号 */
+    SCL_Set(1);
+    delay_10us(IIC_DELAY_10US);
+    SDA_Set(1);
+    delay_10us(IIC_DELAY_10US);
+
+    return IIC_OK;
+}
+
+/**
+ * @brief 释放（恢复） IIC 总线
+ * @note  通过发送 9 个 SCL 脉冲，尝试释放被从机拉低的 SDA
+ * @param None
+ * @return IIC 状态（IIC_OK）
+ */
+iic_states_t IIC_Bus_Recover(void)
+{
+    uint8_t i;
+
+    /* 保证 SCL 为低，释放 SDA */
+    SCL_Set(0);
+    delay_10us(IIC_DELAY_10US);
+    SDA_Set(1);
+    delay_10us(IIC_DELAY_10US);
+
+    /* 连续发送 9 个 SCL 脉冲 */
+    for (i = 0; i < 9; i++)
+    {
+        SCL_Set(1);
+        delay_10us(IIC_DELAY_10US);
+        SCL_Set(0);
+        delay_10us(IIC_DELAY_10US);
+    }
+    
+    /* 强制产生 STOP 信号 */
+    SDA_Set(0);
+    delay_10us(IIC_DELAY_10US);
     SCL_Set(1);
     delay_10us(IIC_DELAY_10US);
     SDA_Set(1);
