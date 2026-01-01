@@ -223,6 +223,8 @@ iic_states_t IIC_Stop(void)
  * @brief 等待从机 ACK
  * @param None
  * @return IIC 状态
+ * @retval IIC_OK - 收到从机 ACK
+ *         IIC_ERR_NACK - 未收到从机 ACK
  */
 iic_states_t IIC_Wait_ACK(void)
 {
@@ -268,6 +270,7 @@ iic_states_t IIC_Send_ACK(bool ack)
 
 /**
  * @brief IIC 发送一个字节
+ * @note 包含等待从机 ACK 程序
  * @param sendbyte 要发送的一个字节的数据
  * @return 是否接收到从机的 ACK
  */
@@ -293,6 +296,7 @@ iic_states_t IIC_SendByte(unsigned char sendbyte)
 
 /**
  * @brief IIC 接收一个字节
+ * @note 包含发送 ACK 程序
  * @param receivebyte 用于保存接受到的1个字节的变量的地址
  * @param ack 是否发送 ACK（0=NACK，1=ACK）
  * @return IIC 状态（IIC_OK）
